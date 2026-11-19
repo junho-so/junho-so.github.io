@@ -148,9 +148,13 @@ h2 {
   display: grid;
   grid-template-columns: 160px minmax(0, 1fr);
   gap: 28px;
-  align-items: center;
+  align-items: start;
   padding: 18px 0;
   margin-bottom: 10px;
+}
+
+.pub-body {
+  padding-top: 16px;
 }
 
 .thumb {
@@ -186,6 +190,73 @@ h3 {
 .venue {
   color: var(--venue);
   font-style: italic;
+}
+
+.citations {
+  margin-top: 3px;
+}
+
+.citations summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 2px 3px 0;
+  color: #50627b;
+  font-size: 0.78125rem;
+  list-style: none;
+  cursor: pointer;
+}
+
+.citations summary::-webkit-details-marker {
+  display: none;
+}
+
+.citations summary::after {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-right: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+  transform: translateY(-1px) rotate(45deg);
+}
+
+.citations[open] summary::after {
+  transform: translateY(1px) rotate(225deg);
+}
+
+.citations summary:hover,
+.citing-papers a:hover {
+  color: var(--link);
+  text-decoration: underline;
+}
+
+.citations :is(summary, a):focus-visible {
+  outline: 2px solid var(--link);
+  outline-offset: 3px;
+}
+
+.citing-papers {
+  margin: 4px 0 0;
+  padding: 0 0 0 12px;
+  border-left: 1px solid #d5dce4;
+  list-style: none;
+  font-size: 0.84375rem;
+  line-height: 1.42;
+  overflow-wrap: anywhere;
+}
+
+.citing-papers li + li {
+  margin-top: 11px;
+}
+
+.citing-papers sup {
+  line-height: 0;
+}
+
+.reference-authors {
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 0.75rem;
 }
 
 .list {
@@ -245,6 +316,10 @@ footer p {
     padding: 13px 0;
   }
 
+  .pub-body {
+    padding-top: 0;
+  }
+
   .thumb {
     width: 100%;
     max-width: 220px;
@@ -256,5 +331,11 @@ footer p {
     display: block;
     width: auto;
     margin-bottom: 1px;
+  }
+}
+
+@media (pointer: coarse) {
+  .citations summary {
+    min-height: 44px;
   }
 }
