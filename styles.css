@@ -147,17 +147,24 @@ h2 {
 .publication {
   display: grid;
   grid-template-columns: 160px minmax(0, 1fr);
-  gap: 28px;
+  grid-template-rows: max-content 1fr;
+  grid-template-areas:
+    "thumb heading"
+    "thumb citations";
+  column-gap: 28px;
   align-items: start;
   padding: 18px 0;
   margin-bottom: 10px;
 }
 
 .pub-body {
+  grid-area: heading;
   padding-top: 16px;
 }
 
 .thumb {
+  grid-area: thumb;
+  align-self: start;
   width: 160px;
   height: 160px;
   display: block;
@@ -193,6 +200,8 @@ h3 {
 }
 
 .citations {
+  grid-area: citations;
+  min-width: 0;
   margin-top: 3px;
 }
 
@@ -236,17 +245,25 @@ h3 {
 }
 
 .citing-papers {
+  display: grid;
+  row-gap: 11px;
   margin: 4px 0 0;
   padding: 0 0 0 12px;
   border-left: 1px solid #d5dce4;
   list-style: none;
   font-size: 0.84375rem;
   line-height: 1.42;
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
 }
 
-.citing-papers li + li {
-  margin-top: 11px;
+.citing-papers li {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.citing-papers li > a {
+  display: block;
 }
 
 .citing-papers sup {
@@ -257,6 +274,7 @@ h3 {
   margin-top: 2px;
   color: var(--muted);
   font-size: 0.75rem;
+  line-height: 1.42;
 }
 
 .list {
@@ -312,7 +330,8 @@ footer p {
   }
 
   .publication {
-    grid-template-columns: 1fr;
+    grid-template-columns: clamp(56px, 17vw, 112px) minmax(0, 1fr);
+    column-gap: clamp(10px, 3vw, 18px);
     padding: 13px 0;
   }
 
@@ -322,7 +341,6 @@ footer p {
 
   .thumb {
     width: 100%;
-    max-width: 220px;
     height: auto;
     aspect-ratio: 1;
   }
