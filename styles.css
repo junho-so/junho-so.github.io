@@ -152,6 +152,16 @@ h1 {
   margin-bottom: 34px;
 }
 
+#honors {
+  margin-bottom: 0;
+}
+
+.interests-divider {
+  margin: 17px 0 16px;
+  border: 0;
+  border-top: 1px solid var(--line);
+}
+
 h2 {
   margin-bottom: 15px;
   font-size: 1.45rem;
